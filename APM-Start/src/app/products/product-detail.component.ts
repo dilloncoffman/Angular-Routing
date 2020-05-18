@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 
-import { Product } from "./product";
+import { Product, ProductResolved } from "./product";
 import { ProductService } from "./product.service";
 import { ActivatedRoute } from "@angular/router";
 
@@ -13,22 +13,14 @@ export class ProductDetailComponent {
   product: Product;
   errorMessage: string;
 
-  constructor(
-    private productService: ProductService,
-    private router: ActivatedRoute
-  ) {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    // Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    const id = +this.router.snapshot.paramMap.get("id"); // + casts route param 'id' to a number
-    this.getProduct(id); // do async requests in ngOnInit to get this product's data
-  }
-
-  getProduct(id: number) {
-    this.productService.getProduct(id).subscribe({
-      next: (product) => this.onProductRetrieved(product),
-      error: (err) => (this.errorMessage = err),
-    });
+    const resolvedProductData: ProductResolved = this.route.snapshot.data[
+      "resolvedProductData"
+    ];
+    this.errorMessage = resolvedProductData.error;
+    this.onProductRetrieved(resolvedProductData.product);
   }
 
   onProductRetrieved(product: Product): void {
