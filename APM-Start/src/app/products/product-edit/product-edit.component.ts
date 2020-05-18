@@ -24,11 +24,11 @@ export class ProductEditComponent {
   ) {}
 
   ngOnInit(): void {
-    const resolvedProductData: ProductResolved = this.route.snapshot.data[
-      "resolvedProductData"
-    ];
-    this.errorMessage = resolvedProductData.error;
-    this.onProductRetrieved(resolvedProductData.product);
+    this.route.data.subscribe((data) => {
+      const resolvedProductData: ProductResolved = data["resolvedProductData"];
+      this.errorMessage = resolvedProductData.error;
+      this.onProductRetrieved(resolvedProductData.product);
+    });
   }
 
   getProduct(id: number): void {
