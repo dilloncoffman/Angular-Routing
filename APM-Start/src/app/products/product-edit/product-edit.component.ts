@@ -24,7 +24,7 @@ export class ProductEditComponent {
   ) {}
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    // Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     this.route.paramMap.subscribe((params) => {
       const id = +params.get("id");
       this.getProduct(id);
