@@ -2,7 +2,6 @@ import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { WelcomeComponent } from "./home/welcome.component";
 import { PageNotFoundComponent } from "./page-not-found.component";
-import { ProductListComponent } from "./products/product-list.component";
 
 const ROUTES = [
   { path: "welcome", component: WelcomeComponent },
@@ -11,7 +10,7 @@ const ROUTES = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(ROUTES)],
+  imports: [RouterModule.forRoot(ROUTES, { enableTracing: true })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
