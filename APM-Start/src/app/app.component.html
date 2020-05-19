@@ -30,10 +30,11 @@
     <li class="nav-item" *ngIf="isLoggedIn">
       <a class="nav-link">Welcome {{ userName }}</a>
     </li>
-    <li class="nav-item">
-      <a [routerLink]="[{ outlets: { popup: ['messages'] } }]" class="nav-link"
-        >Show Messages</a
-      >
+    <li class="nav-item" *ngIf="!isMessageDisplayed">
+      <a (click)="displayMessages()" class="nav-link">Show Messages</a>
+    </li>
+    <li class="nav-item" *ngIf="isMessageDisplayed">
+      <a (click)="hideMessages()" class="nav-link">Hide Messages</a>
     </li>
     <li class="nav-item" *ngIf="!isLoggedIn">
       <a [routerLink]="['/login']" class="nav-link">Log In</a>
