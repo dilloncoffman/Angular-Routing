@@ -5,8 +5,8 @@
 
   <div class="card-body" *ngIf="product">
     <div class="wizard">
-      <a>Basic Information</a>
-      <a>Search Tags</a>
+      <a [routerLink]="['info']">Basic Information</a>
+      <a [routerLink]="['tags']">Search Tags</a>
     </div>
 
     <router-outlet></router-outlet>
@@ -14,25 +14,31 @@
 
   <div class="row mb-2">
     <div class="col-md-4">
-      <button class="btn btn-primary mr-3"
-              style="width:80px"
-              type="button"
-              title="Save your entered data"
-              (click)="saveProduct()">
+      <button
+        class="btn btn-primary mr-3"
+        style="width: 80px;"
+        type="button"
+        title="Save your entered data"
+        (click)="saveProduct()"
+      >
         Save
       </button>
-      <button class="btn btn-outline-secondary mr-3"
-              style="width:80px"
-              type="button"
-              title="Cancel your edits"
-              [routerLink]="['/products']">
-        Cancel 
+      <button
+        class="btn btn-outline-secondary mr-3"
+        style="width: 80px;"
+        type="button"
+        title="Cancel your edits"
+        [routerLink]="['/products']"
+      >
+        Cancel
       </button>
-      <button class="btn btn-outline-warning"
-              style="width:80px"
-              type="button"
-              title="Delete this product"
-              (click)="deleteProduct()">
+      <button
+        class="btn btn-outline-warning"
+        style="width: 80px;"
+        type="button"
+        title="Delete this product"
+        (click)="deleteProduct()"
+      >
         Delete
       </button>
     </div>
