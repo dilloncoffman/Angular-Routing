@@ -9,7 +9,7 @@ import { RouterModule } from "@angular/router";
   imports: [
     SharedModule,
     RouterModule.forChild([
-      { path: "message", component: MessageComponent, outlet: "popup" },
+      { path: "messages", component: MessageComponent, outlet: "popup" },
     ]),
   ],
   declarations: [MessageComponent],
