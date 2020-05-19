@@ -1,30 +1,37 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 
-import { Product } from '../product';
+import { Product } from "../product";
 
 @Component({
-  templateUrl: './product-edit-tags.component.html'
+  templateUrl: "./product-edit-tags.component.html",
 })
 export class ProductEditTagsComponent implements OnInit {
   errorMessage: string;
-  newTags = '';
-  product = { id: 1, category: 'test', tags: ['test'] };
+  newTags = "";
+  product: Product;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    // Retrieve the data from the parent route using its resolved route data
+    this.route.parent.data.subscribe((data) => {
+      this.product = data["resolvedProductData"].product;
+    });
   }
 
   // Add the defined tags
   addTags(): void {
     if (!this.newTags) {
-      this.errorMessage = 'Enter the search keywords separated by commas and then press Add';
+      this.errorMessage =
+        "Enter the search keywords separated by commas and then press Add";
     } else {
-      const tagArray = this.newTags.split(',');
-      this.product.tags = this.product.tags ? this.product.tags.concat(tagArray) : tagArray;
-      this.newTags = '';
-      this.errorMessage = '';
+      const tagArray = this.newTags.split(",");
+      this.product.tags = this.product.tags
+        ? this.product.tags.concat(tagArray)
+        : tagArray;
+      this.newTags = "";
+      this.errorMessage = "";
     }
   }
 
