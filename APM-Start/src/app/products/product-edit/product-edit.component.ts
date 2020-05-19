@@ -16,6 +16,9 @@ export class ProductEditComponent implements OnInit {
 
   private dataIsValid: { [key: string]: boolean } = {};
 
+  // Compares stringified originalProduct with stringified currentProduct,
+  // Be careful if using this approach to make sure the properties of the objects
+  // are always defined in the same order
   get isDirty(): boolean {
     return (
       JSON.stringify(this.originalProduct) !==
@@ -26,12 +29,14 @@ export class ProductEditComponent implements OnInit {
   private currentProduct: Product;
   private originalProduct: Product;
 
+  // getter will return currentProduct
   get product(): Product {
     return this.currentProduct;
   }
+  // sets currentProduct to the product the user is currently editing
   set product(value: Product) {
     this.currentProduct = value;
-    // Clone the object to retain a copy
+    // Clone the object to retain a copy for comparison
     this.originalProduct = value ? { ...value } : null;
   }
 
@@ -90,6 +95,7 @@ export class ProductEditComponent implements OnInit {
     );
   }
 
+  // Resets data after completing an operation
   reset(): void {
     this.dataIsValid = null;
     this.currentProduct = null;
@@ -124,6 +130,8 @@ export class ProductEditComponent implements OnInit {
     if (message) {
       this.messageService.addMessage(message);
     }
+
+    // Reset data after completed operation
     this.reset();
 
     // Navigate back to the product list
